@@ -1,13 +1,13 @@
-import GameRenderer from "./renderer/GameRenderer";
+import GameRenderer from "../renderer/GameRenderer";
+import Scene from "./Scene";
+import Time from "./Time";
 
 export default class GameEngine {
     public gameRenderer:GameRenderer;
+    public currentScene:Scene = null;
 
     constructor(canvas:HTMLCanvasElement) {
         this.gameRenderer = new GameRenderer(canvas);
-
-        this.lastFrameTime = Date.now();
-        this.deltaTime = 0;
     }
 
     destroy() {
@@ -15,11 +15,7 @@ export default class GameEngine {
         this.gameRenderer = null;
     }
 
-    lastFrameTime: number = 0;
-    deltaTime: number = 0;
-
     update() {
-        this.deltaTime = Date.now() - this.lastFrameTime;
-        this.lastFrameTime = Date.now();
+        Time.update()
     }
 }

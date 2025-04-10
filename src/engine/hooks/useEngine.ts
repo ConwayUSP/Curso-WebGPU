@@ -1,5 +1,5 @@
 import { Ref, RefObject, useEffect, useState } from "react";
-import GameEngine from "../GameEngine";
+import GameEngine from "../core/GameEngine";
 
 export default function useEngine(canvas: RefObject<HTMLCanvasElement>) {
     //Salva uma instância de GameEngine para o respectivo Canvas

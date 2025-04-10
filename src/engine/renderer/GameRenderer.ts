@@ -1,4 +1,4 @@
-import GameEngine from "../GameEngine";
+import GameEngine from "../core/GameEngine";
 
 export default class GameRenderer {
     private _canvas:HTMLCanvasElement | null = null;

@@ -1,8 +1,23 @@
-export default class ArrayCollection<T> {
+export default class ArrayCollection<T> implements Iterable<T> {
     _array: T[] = [];
 
     constructor(array: T[] = []) {
         this._array = array;
+    }
+    
+    [Symbol.iterator](): Iterator<T> {
+        let index = 0;
+        const array = this._array;
+
+        return {
+            next(): IteratorResult<T> {
+                if (index < array.length) {
+                    return { value: array[index++], done: false };
+                } else {
+                    return { value: undefined, done: true };
+                }
+            }
+        };
     }
 
     get length(): number {
@@ -42,9 +57,5 @@ export default class ArrayCollection<T> {
 
     contains(item: T): boolean {
         return this._array.includes(item);
-    }
-
-    forEach(callback: (item: T, index: number) => void): void {
-        this._array.forEach(callback);
     }
 }
